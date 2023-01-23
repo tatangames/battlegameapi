@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth:sanctum');
+        //$this->middleware('auth:sanctum');
     }
 
     public function registroUsuario(Request $request){
@@ -49,9 +49,9 @@ class LoginController extends Controller
     }
 
 
-    public function pruebaTest(Request $request){
+    public function pruebaTest(){
 
-        return "si llega";
+        return ['title' => 'holiss'];
     }
 
 }

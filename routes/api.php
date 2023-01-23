@@ -28,4 +28,4 @@ Route::post('/login', [LoginController::class, 'infoUsuario']);
 
 
 
-Route::post('/prueba', [LoginController::class, 'pruebaTest']);
+Route::get('/prueba', [LoginController::class, 'pruebaTest']);

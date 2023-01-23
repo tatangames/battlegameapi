@@ -5,7 +5,8 @@ namespace App\Exceptions;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 
@@ -66,6 +67,10 @@ class Handler extends ExceptionHandler
 
         if($exception instanceof AuthenticationException){
             return response()->json(["success" => false, "error" => "No tiene permisos para acceder a esta ruta"], 401);
+        }
+
+        if($exception instanceof MethodNotAllowedHttpException){
+            return response()->json(["success" => false, "error" => "El metodo Get o Post que esta accediendo no es permitido"], 401);
         }
 
         return parent::render($request, $exception);
